@@ -1,0 +1,103 @@
+
+    <app-navbar></app-navbar>
+
+    <div class="col-md-8 col-md-offset-2 main">
+        <div class="row">
+
+        <div class="col-md-10 main">
+        <form name="form" class="form-horizontal" (ngSubmit)="f.form.valid && createClient()" #f="ngForm" >
+            <h1>Dados cadastrais</h1>
+              
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+				  <label class="col-md-4 control-label" for="name">Nome Completo</label>  
+				  <div class="col-md-6">
+				  <input id="name" name="name" type="text" placeholder="" class="form-control input-md"  [(ngModel)]="client.name" #name="ngModel" maxlength="50" required>
+					<div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cellphone.valid }">
+				  <label class="col-md-4 control-label" for="cellphone">Celular</label>  
+				  <div class="col-md-4">
+				  <input id="cellphone" mask='(00) 00000-0000' name="cellphone" type="text" placeholder="" class="form-control input-md" [(ngModel)]="client.cellphone" #cellphone="ngModel" maxlength="15" required>
+					<div *ngIf="f.submitted && !cellphone.valid" class="help-block">Cell phone is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+				  <label class="col-md-4 control-label" for="email">Email</label>  
+				  <div class="col-md-6">
+				  <input id="email" name="email" type="email" placeholder="" class="form-control input-md"  [(ngModel)]="client.email" #email="ngModel" maxlength="50" required>
+					<div *ngIf="f.submitted && !email.valid" class="help-block">Email is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cpf.valid }">
+				  <label class="col-md-4 control-label" for="CPF">CPF</label>  
+				  <div class="col-md-6">
+				  <input id="cpf" name="cpf" mask="000.000.000-00" type="text" placeholder="" class="form-control input-md"  [(ngModel)]="client.cpf" #cpf="ngModel" maxlength="20" required>
+					<div *ngIf="f.submitted && !cpf.valid" class="help-block">CPF is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !street.valid }">
+				  <label class="col-md-4 control-label" for="street">Rua/Avenida</label>  
+				  <div class="col-md-6">
+				  <input id="street" name="street" type="text" placeholder="" class="form-control input-md" [(ngModel)]="address.street" #street="ngModel" maxlength="50" required>
+					<div *ngIf="f.submitted && !street.valid" class="help-block">Street is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !zipcode.valid }">
+				  <label class="col-md-4 control-label" for="zipcode">CEP</label>  
+				  <div class="col-md-4">
+				  <input id="zipcode" name="zipcode" mask="00000-000" type="text" placeholder="" class="form-control input-md" [(ngModel)]="address.zipcode" #zipcode="ngModel" maxlength="20" required>
+					<div *ngIf="f.submitted && !zipcode.valid" class="help-block">Zipcode is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !number.valid }">
+				  <label class="col-md-4 control-label" for="number">N°</label>  
+				  <div class="col-md-4">
+				  <input id="number" name="number" type="text" placeholder="" class="form-control input-md" [(ngModel)]="address.number" #number="ngModel" maxlength="10" required>
+					<div *ngIf="f.submitted && !number.valid" class="help-block">Number is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group">
+				  <label class="col-md-4 control-label" for="complement">Complemento</label>  
+				  <div class="col-md-4">
+				  <input id="complement" name="complement" type="text" placeholder="" class="form-control input-md" [(ngModel)]="address.complement" #complement="ngModel" maxlength="100">
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !neighborhood.valid }">
+				  <label class="col-md-4 control-label" for="Bairro">Bairro</label>  
+				  <div class="col-md-4">
+				  <input id="Bairro" name="Bairro" type="text" placeholder="" class="form-control input-md" [(ngModel)]="address.neighborhood" #neighborhood="ngModel" maxlength="50" required>
+					<div *ngIf="f.submitted && !neighborhood.valid" class="help-block">complement is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !profession.valid }">
+				  <label class="col-md-4 control-label" for="profissao">Profissão</label>  
+				  <div class="col-md-6">
+				  <input id="profession" name="profession" type="text" placeholder="" class="form-control input-md" [(ngModel)]="client.profession" #profession="ngModel" maxlength="50" required>
+					<div *ngIf="f.submitted && !profession.valid" class="help-block">CPF is required</div>
+				  </div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-4 col-md-6">
+						<div class="form-group row">
+							<button type="submit" class="btn btn-primary">Salvar</button>
+              <button type="button" class="btn btn-primary" (click)="backToHome()">Voltar</button>
+            </div>
+          </div>
+				</div>
+				<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+      </form>
+    </div>
+</div>
+</div>

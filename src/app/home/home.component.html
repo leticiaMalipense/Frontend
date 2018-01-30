@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+    <div class="col-md-8 col-md-offset-2 main">
+        <div class="row">
+            <h1>Clientes cadastrados</h1>
+            <br/>
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="newClient()">Novo</button>
+            </div>
+            <div *ngIf="gridVisible" id="client_grid" class="table-responsive">
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Celular</th>
+                        <th>Rua/Avenida</th>
+                        <th>Número</th>
+                        <th>CEP</th>
+                        <th>Email</th>
+                        <th>CPF</th>
+                        <th>Profissão</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </thead>
+                <tbody>
+                
+                <tr *ngFor="let client of listClients">
+                    <td><textarea value="{{client.name}}" disabled class="disable"></textarea></td>
+                    <td><textarea value="{{client.cellphone}}" disabled class="disable" mask='(00) 00000-0000' style="width:110px"></textarea></td>
+                    <td><textarea value="{{client.address.street}}" disabled class="disable" style="width:180px"></textarea></td>
+                    <td><textarea value="{{client.address.number}}" disabled class="disable"  style="width:60px"></textarea></td>
+                    <td><textarea value="{{client.address.zipcode}}" disabled class="disable" mask="00000-000" style="width:80px"></textarea></td>
+                    <td><textarea value="{{client.email}}" disabled class="disable"></textarea></td>
+                    <td><textarea value="{{client.cpf}}" disabled class="disable" mask="000.000.000-00" style="width:100px"></textarea></td>
+                    <td><textarea value="{{client.profession}}" disabled class="disable" style="width:180px"></textarea></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button id="btn_edit" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" (click)="btnEdit(client)"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button id="btn_delete" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#modal-delete" (click)="btnDelete(client.id)"><span class="glyphicon glyphicon-trash"></span></button></p></td>
+                </tr>
+                </tbody>   
+            </table>
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Exclusão</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Tem certeza que deseja excluir este item?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="delete()">Excluir</button>
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="clearfix"></div>
+            <ul class="pagination pull-right">
+                <li class="" *ngFor="let item of range(qtdPag).slice().reverse()">
+                    <a (click)="getClients(item)">{{item+1}}</a>
+                </li>
+            </ul>
+                            
+            </div>
+                        
+        </div>
+    </div>
+            
